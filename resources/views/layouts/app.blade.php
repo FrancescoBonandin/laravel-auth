@@ -24,11 +24,11 @@
                                 <a class="nav-link" href="{{ route('admin.dashboard') }}">Dashboard</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="#">Link 2</a>
+                                <a class="nav-link" href="{{ route('admin.projects.index') }}">index</a>
                             </li>
-                            <li class="nav-item">
+                            {{-- <li class="nav-item">
                                 <a class="nav-link" href="#">Link 3</a>
-                            </li>
+                            </li> --}}
                         </ul>
                         <form method="POST" action="{{ route('logout') }}">
                             @csrf
