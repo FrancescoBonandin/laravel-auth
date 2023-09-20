@@ -25,6 +25,7 @@ class StoreProjectRequest extends FormRequest
     {
         return [
             'title'=>'required|max:255',
+            'description'=>'min:0',
             
         ];
     }

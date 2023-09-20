@@ -75,7 +75,7 @@
 
                                     </a>
 
-                                    <form action="{{route('admin.projects.destroy',['project'=>$project])}}" method="POST">
+                                    <form onsubmit="return confirm('sei sicuro?')" action="{{route('admin.projects.destroy',['project'=>$project])}}" method="POST">
                                         @csrf
                                         @method('Delete')
 

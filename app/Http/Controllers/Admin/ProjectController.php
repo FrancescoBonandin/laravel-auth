@@ -35,11 +35,20 @@ class ProjectController extends Controller
     public function store(StoreProjectRequest $request)
     {
 
-        $project=new Project();
-        $project->title=$request->input('title');
-        $project->slug=str()->slug($request->input('title'));
-        $project->description=$request->input('description');
-        $project->save();
+        $formData=$request->validated();
+        $slug=str()->slug($formData['title']);
+
+        $project=Project::create([
+            'title'=> $formData['title'],
+            'slug'=> $slug,
+            'description'=> $formData['description'],
+        ]);
+
+        // $project=new Project();
+        // $project->title=$request->input('title');
+        // $project->slug=str()->slug($request->input('title'));
+        // $project->description=$request->input('description');
+        // $project->save();
 
 
         return redirect()->route('admin.projects.index');
@@ -68,14 +77,18 @@ class ProjectController extends Controller
      */
     public function update(UpdateProjectRequest $request, Project $project)
     {
-        $project=new Project();
-        $project->title=$request->input('title');
-        $project->slug=str()->slug($request->input('title'));
-        $project->description=$request->input('description');
+
+        $formData=$request->validated();
+        $slug=str()->slug($request->input('title'));
+
+        $project= Project::findOrFail($project->id);
+        $project->title=$formData['title'];
+        $project->slug=$slug;
+        $project->description=$formData['description'];
         $project->save();
 
 
-        return redirect()->route('admin.projects.index');
+        return redirect()->route('admin.projects.index',);
     }
 
     /**
